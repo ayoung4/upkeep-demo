@@ -1,0 +1,15 @@
+{
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@now/next"
+        }
+    ],
+    "env": {
+        "LOGIN_TOKEN": "@upkeep-demo-login-token",
+        "EMAIL": "@upkeep-demo-email",
+        "PASSWORD": "@upkeep-demo-password",
+        "UPKEEP_EMAIL": "@upkeep-demo-upkeep-email",
+        "UPKEEP_PASSWORD": "@upkeep-demo-upkeep-password"
+    }
+}
