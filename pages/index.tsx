@@ -8,7 +8,7 @@ import Nav from '../components/nav';
 import { LoginForm } from '../components/login-form';
 import { post } from '../lib/api/request';
 import { Email, Password } from '../lib/api/constants';
-import { Context } from './constants';
+import { Context } from '../lib/api/pages/constants';
 
 type Values = {
     password: string;

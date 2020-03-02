@@ -1,4 +1,4 @@
-import { AuthToken } from '../lib/api/constants';
+import { AuthToken } from '../constants';
 
 export type Context = {
     token: AuthToken;

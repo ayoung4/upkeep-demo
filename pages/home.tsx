@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Button } from 'semantic-ui-react';
 
 import Nav from '../components/nav';
-import { Context } from './constants';
+import { Context } from '../lib/api/pages/constants';
 
 const Home: React.FC<{ context: Context }> = ({ context }) => (
     <div>
