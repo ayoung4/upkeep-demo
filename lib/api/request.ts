@@ -1,5 +1,4 @@
 const sharedSettings: Partial<RequestInit> = {
-    mode: 'cors',
     cache: 'no-cache',
     credentials: 'same-origin',
     redirect: 'follow',
