@@ -27,10 +27,10 @@ const validationSchema =
     });
 
 const signInWithPassword = (email: Email, password: Password) =>
-    post('http://localhost:3000/api/login', {
-        email,
-        password,
-    });
+    post(
+        `${process.env.ROOT_URL}/api/login`,
+        { email, password },
+    );
 
 const Home = () => (
     <div>

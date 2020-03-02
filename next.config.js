@@ -4,5 +4,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = {
     env: {
+        ROOT_URL: process.env.ROOT_URL,
     },
 };

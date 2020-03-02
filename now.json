@@ -10,6 +10,7 @@
         "EMAIL": "@upkeep-demo-email",
         "PASSWORD": "@upkeep-demo-password",
         "UPKEEP_EMAIL": "@upkeep-demo-upkeep-email",
-        "UPKEEP_PASSWORD": "@upkeep-demo-upkeep-password"
+        "UPKEEP_PASSWORD": "@upkeep-demo-upkeep-password",
+        "ROOT_URL": "@upkeep-demo-root-url"
     }
 }
