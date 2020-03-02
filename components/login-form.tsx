@@ -22,6 +22,7 @@ export const LoginForm: React.FC<FormikProps<Values>> = ({
 }) => (
         <Form loading={isSubmitting}>
             <h1>{status.err || ''}</h1>
+            <br/>
             <Form.Field>
                 <label>Email:</label>
                 <Form.Input
