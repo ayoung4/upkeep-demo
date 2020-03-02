@@ -8,7 +8,8 @@ import Nav from '../components/nav';
 import { LoginForm } from '../components/login-form';
 import { post } from '../lib/api/request';
 import { Email, Password } from '../lib/api/constants';
-import { Context } from '../lib/api/pages/constants';
+import { Page } from '../lib/api/pages/constants';
+import { Centered } from '../components/centered';
 
 type Values = {
     password: string;
@@ -32,17 +33,14 @@ const signInWithPassword = (email: Email, password: Password) =>
         { email, password },
     );
 
-const Home: React.FC<{ context: Context }> = ({ context }) => {
+const Home: Page = ({ token, setToken }) => {
     React.useEffect(() => {
-        if (context.token !== '') {
+        if (token !== '') {
             Router.push('/home');
         }
     })
-    console.log(context.token);
     return (
-        <div>
-            <Nav></Nav>
-            {process.env.ROOT_URL}
+        <Centered>
             <Formik
                 initialStatus={{
                     success: true,
@@ -53,14 +51,14 @@ const Home: React.FC<{ context: Context }> = ({ context }) => {
                 }}
                 onSubmit={({ password, email }, form) =>
                     signInWithPassword(email as Email, password as Password)
-                        .then(R.tap(({ token }: any) => context.setToken(token)))
+                        .then(R.tap(({ token }: any) => setToken(token)))
                         .then(form.setStatus)
                 }
                 validationSchema={validationSchema}
             >
                 {(form) => <LoginForm {...form} />}
             </Formik>
-        </div>
+        </Centered>
     );
 };
 
