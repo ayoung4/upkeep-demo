@@ -1,14 +1,14 @@
 import React from 'react';
 import * as Yup from 'yup';
 import * as R from 'ramda';
-import Head from 'next/head';
-import Nav from '../components/nav';
 import { Formik } from 'formik';
+import Router from 'next/router';
 
-import { Form } from 'semantic-ui-react';
+import Nav from '../components/nav';
 import { LoginForm } from '../components/login-form';
 import { post } from '../lib/api/request';
 import { Email, Password } from '../lib/api/constants';
+import { Context } from './constants';
 
 type Values = {
     password: string;
@@ -32,28 +32,36 @@ const signInWithPassword = (email: Email, password: Password) =>
         { email, password },
     );
 
-const Home = () => (
-    <div>
-        <Nav></Nav>
-        {process.env.ROOT_URL}
-        <Formik
-            initialStatus={{
-                success: true,
-            }}
-            initialValues={{
-                email: '',
-                password: '',
-            }}
-            onSubmit={({ password, email }, form) =>
-                signInWithPassword(email as Email, password as Password)
-                    .then(R.tap(console.log))
-                    .then(form.setStatus)
-            }
-            validationSchema={validationSchema}
-        >
-            {(form) => <LoginForm {...form} />}
-        </Formik>
-    </div>
-);
+const Home: React.FC<{ context: Context }> = ({ context }) => {
+    React.useEffect(() => {
+        if (context.token !== '') {
+            Router.push('/home');
+        }
+    })
+    console.log(context.token);
+    return (
+        <div>
+            <Nav></Nav>
+            {process.env.ROOT_URL}
+            <Formik
+                initialStatus={{
+                    success: true,
+                }}
+                initialValues={{
+                    email: '',
+                    password: '',
+                }}
+                onSubmit={({ password, email }, form) =>
+                    signInWithPassword(email as Email, password as Password)
+                        .then(R.tap(({ token }: any) => context.setToken(token)))
+                        .then(form.setStatus)
+                }
+                validationSchema={validationSchema}
+            >
+                {(form) => <LoginForm {...form} />}
+            </Formik>
+        </div>
+    );
+};
 
 export default Home
