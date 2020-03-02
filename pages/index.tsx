@@ -35,6 +35,7 @@ const signInWithPassword = (email: Email, password: Password) =>
 const Home = () => (
     <div>
         <Nav></Nav>
+        {process.env.ROOT_URL}
         <Formik
             initialStatus={{
                 success: true,
