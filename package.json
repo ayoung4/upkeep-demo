@@ -8,16 +8,23 @@
     "start": "next start"
   },
   "dependencies": {
+    "formik": "^2.1.4",
+    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-unfetch": "^3.0.0",
     "monet": "^0.9.1",
     "next": "9.2.2",
+    "ramda": "^0.27.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "yup": "^0.28.1"
   },
   "devDependencies": {
     "@types/node": "^13.7.7",
+    "@types/ramda": "^0.26.43",
     "@types/react": "^16.9.23",
+    "@types/yup": "^0.26.32",
     "dotenv": "^8.2.0",
     "typescript": "^3.8.3",
     "utility-types": "^3.10.0"

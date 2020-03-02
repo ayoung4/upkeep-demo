@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { logIn } from '../../lib/log-in';
+import { logIn } from '../../lib/api/log-in';
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
-    const loginAttempt = logIn(req.body.email, req.body.password);
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    const loginAttempt = await logIn(req.body.email, req.body.password);
     if (loginAttempt.isLeft()) {
         res
             .status(200)

@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { addWorkOrder } from '../../lib/add-workorder';
+import { addWorkorder } from '../../lib/api/add-workorder';
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
-    const attempt = addWorkOrder(req.body.token, req.body.data);
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    const attempt = await addWorkorder(req.body.token, req.body.data);
     if (attempt.isLeft()) {
         res
             .status(200)
@@ -10,6 +10,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     } else {
         res
             .status(200)
-            .json({ token: attempt.right() });
+            .json({ workorderId: attempt.right() });
     }
 };

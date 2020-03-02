@@ -16,8 +16,8 @@ export type WorkOrder = {
     name: string;
 };
 
-export type LogIn = (email: Email, password: Password) => Either<Error, AuthToken>;
+export type LogIn = (email: Email, password: Password) => Promise<Either<Error, AuthToken>>;
 
-export type AddWorkOrder = (token: AuthToken, data: Omit<WorkOrder, 'id'>) => Either<Error, Id>;
+export type AddWorkOrder = (token: AuthToken, data: Omit<WorkOrder, 'id'>) => Promise<Either<Error, WorkOrder>>;
 
-export type ListWorkOrders = (token: AuthToken) => Either<Error, WorkOrder[]>;
+export type ListWorkOrders = (token: AuthToken) => Promise<Either<Error, WorkOrder[]>>;
