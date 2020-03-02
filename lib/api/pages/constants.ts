@@ -5,4 +5,4 @@ export type Context = {
     setToken: React.Dispatch<React.SetStateAction<AuthToken>>;
 };
 
-export type Page = React.FC<Context>;
+export type Page = React.FC<{ context: Context }>;

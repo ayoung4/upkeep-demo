@@ -10,6 +10,8 @@ import { post } from '../lib/api/request';
 import { Email, Password } from '../lib/api/constants';
 import { Page } from '../lib/api/pages/constants';
 import { Centered } from '../components/centered';
+import { ThreeParts } from '../components/layout';
+import { Header, Image } from 'semantic-ui-react';
 
 type Values = {
     password: string;
@@ -33,32 +35,47 @@ const signInWithPassword = (email: Email, password: Password) =>
         { email, password },
     );
 
-const Home: Page = ({ token, setToken }) => {
+const Home: Page = ({ context }) => {
+    console.log(context.token);
     React.useEffect(() => {
-        if (token !== '') {
+        if (context.token && context.token.length) {
             Router.push('/home');
         }
     })
     return (
-        <Centered>
-            <Formik
-                initialStatus={{
-                    success: true,
-                }}
-                initialValues={{
-                    email: '',
-                    password: '',
-                }}
-                onSubmit={({ password, email }, form) =>
-                    signInWithPassword(email as Email, password as Password)
-                        .then(R.tap(({ token }: any) => setToken(token)))
-                        .then(form.setStatus)
-                }
-                validationSchema={validationSchema}
-            >
-                {(form) => <LoginForm {...form} />}
-            </Formik>
-        </Centered>
+        <ThreeParts
+            center={
+                <Centered>
+                    <Image
+                        centered
+                        src='/logo.png'
+                    />
+                    <Formik
+                        initialStatus={{
+                            success: true,
+                        }}
+                        initialValues={{
+                            email: '',
+                            password: '',
+                        }}
+                        onSubmit={({ password, email }, form) =>
+                            signInWithPassword(email as Email, password as Password)
+                                .then(R.tap(({ token }: any) => context.setToken(token)))
+                                .then(form.setStatus)
+                        }
+                        validationSchema={validationSchema}
+                    >
+                        {(form) => <LoginForm {...form} />}
+                    </Formik>
+                </Centered>
+            }
+            bottom={
+                <Header
+                    textAlign='center'
+                    content='Forgot Password | Privacy Policy'
+                />
+            }
+        />
     );
 };
 

@@ -20,9 +20,9 @@ export const LoginForm: React.FC<FormikProps<Values>> = ({
     touched,
     errors,
 }) => (
-        <Form loading={isSubmitting}>
+        <Form loading={isSubmitting} size='huge'>
             <h1>{status.err || ''}</h1>
-            <br/>
+            <br />
             <Form.Field>
                 <label>Email:</label>
                 <Form.Input
@@ -53,6 +53,7 @@ export const LoginForm: React.FC<FormikProps<Values>> = ({
                 type='submit'
                 content='Sign In'
                 disabled={!dirty}
+                size='huge'
             />
             {typeof status === 'string' && (
                 <Message color='red'>{status}</Message>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppProps } from 'next/app';
 import 'semantic-ui-css/semantic.min.css';
-
+import '../public/style.css';
 
 import { AuthToken } from '../lib/api/constants';
 
@@ -17,6 +17,7 @@ const AppContext = React.createContext<Context>({
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     const [token, setToken] = React.useState('' as AuthToken);
+    console.log({ token, setToken });
     return (
         <AppContext.Provider value={{
             token,

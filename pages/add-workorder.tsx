@@ -8,6 +8,8 @@ import { post } from '../lib/api/request';
 import { AuthToken } from '../lib/api/constants';
 import { Page } from '../lib/api/pages/constants';
 import { Centered } from '../components/centered';
+import { ThreeParts } from '../components/layout';
+import { Header } from 'semantic-ui-react';
 
 type Values = {
     title: string;
@@ -34,26 +36,38 @@ const addWorkorder = (token: AuthToken, data: Values) =>
         { token, data },
     );
 
-const Home: Page = ({ token }) => (
-    <Centered>
-        <Formik
-            initialStatus={{
-                success: true,
-            }}
-            initialValues={{
-                title: '',
-                description: '',
-                category: '',
-            }}
-            onSubmit={(data, form) =>
-                addWorkorder(token, data)
-                    .then(form.setStatus)
-            }
-            validationSchema={validationSchema}
-        >
-            {(form) => <AddWorkorderForm {...form} />}
-        </Formik>
-    </Centered>
+const Home: Page = ({ context }) => (
+    <ThreeParts
+        top={
+            <Header
+                textAlign='center'
+                size='large'
+                content='Make a Request'
+            />
+        }
+        center={
+            <Centered>
+                <Formik
+                    initialStatus={{
+                        success: true,
+                    }}
+                    initialValues={{
+                        title: '',
+                        description: '',
+                        category: '',
+                    }}
+                    onSubmit={(data, form) =>
+                        addWorkorder(context.token, data)
+                            .then(form.setStatus)
+                    }
+                    validationSchema={validationSchema}
+                >
+                    {(form) => <AddWorkorderForm {...form} />}
+                </Formik>
+            </Centered>
+        }
+    />
+
 );
 
 export default Home

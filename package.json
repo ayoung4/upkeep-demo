@@ -16,6 +16,7 @@
     "ramda": "^0.27.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
+    "react-layout-components": "^3.0.6",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
     "yup": "^0.28.1"

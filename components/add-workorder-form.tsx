@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form, Button, Message } from 'semantic-ui-react';
+import { Form, Button, Message, Icon } from 'semantic-ui-react';
 import { FormikProps } from 'formik';
 
 import { createErrorTag } from './create-error-tag';
@@ -21,9 +21,9 @@ export const AddWorkorderForm: React.FC<FormikProps<Values>> = ({
     touched,
     errors,
 }) => (
-        <Form loading={isSubmitting}>
+        <Form loading={isSubmitting} size='huge'>
             <h1>{status.err || ''}</h1>
-            <br/>
+            <br />
             <Form.Field>
                 <label>Category:</label>
                 <Form.Select
@@ -31,8 +31,8 @@ export const AddWorkorderForm: React.FC<FormikProps<Values>> = ({
                     onChange={handleChange}
                     onBlur={handleBlur}
                     options={[
-                        { value: 'electrical', text: 'electrical'},
-                        { value: 'damage', text: 'damage'},
+                        { value: 'electrical', text: 'electrical' },
+                        { value: 'damage', text: 'damage' },
                     ]}
                     icon={createErrorIcon('category', touched, errors)}
                     error={createErrorTag('category', touched, errors)}
@@ -59,6 +59,18 @@ export const AddWorkorderForm: React.FC<FormikProps<Values>> = ({
                     onBlur={handleBlur}
                 />
             </Form.Field>
+            <Button
+                fluid
+                basic
+                type='submit'
+                icon
+                size='huge'
+            >
+                <Icon
+                    name='camera'
+                    size='large'
+                />
+            </Button>
             <br />
             <Button
                 fluid
@@ -67,6 +79,7 @@ export const AddWorkorderForm: React.FC<FormikProps<Values>> = ({
                 type='submit'
                 content='Submit Request'
                 disabled={!dirty}
+                size='huge'
             />
             {typeof status === 'string' && (
                 <Message color='red'>{status}</Message>
